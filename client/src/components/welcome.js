@@ -2,6 +2,7 @@ import { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Registration from "./registration";
 import Login from "./login";
+import Reset from "./reset";
 
 export default class Welcome extends Component {
     render() {
@@ -15,6 +16,9 @@ export default class Welcome extends Component {
                         </Route>
                         <Route path="/login">
                             <Login />
+                        </Route>
+                        <Route path="/reset">
+                            <Reset />
                         </Route>
                     </div>
                 </BrowserRouter>
