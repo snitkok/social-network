@@ -26,7 +26,7 @@ app.get("/user/id.json", function (req, res) {
         userId: req.session.userId,
     });
 });
-
+// ---------------------------------------------------------------------
 app.post("/registration.json", (req, res) => {
     console.log("req.body", req.body);
     const { first, last, email, password } = req.body;
@@ -47,7 +47,37 @@ app.post("/registration.json", (req, res) => {
             console.log("err in POST register hash", err);
         });
 });
-
+// ---------------------------------------------------------------------
+app.post("/login.json", (req, res) => {
+    console.log("req.body /login***************", req.body);
+    const { email, password } = req.body;
+    db.selectEmail(email)
+        .then((val) => {
+            console.log("val", val.rows[0]);
+            compare(password, val.rows[0].password)
+                .then((match) => {
+                    console.log("are the passwords a match??? ==>", match);
+                    if (match) {
+                        req.session.userId = val.rows[0].id;
+                        return res.json({ success: true });
+                    }
+                    
+                    // else {
+                    //     return res.render("login", {
+                    //         layout: "main",
+                    //         unvalidData: true,
+                    //     });
+                    // }
+                })
+                .catch((err) => {
+                    console.log("Error inside POST/login..... then()", err);
+                });
+        })
+        .catch((err) => {
+            console.log("Error in POST/login.....", err);
+            // return res.json({ success: false });
+        });
+});
 //Must stay at the end
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));

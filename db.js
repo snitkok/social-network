@@ -21,3 +21,11 @@ module.exports.insertRegisterData = (
     const params = [first, last, email, password];
     return db.query(q, params);
 };
+
+module.exports.selectEmail = (val) => {
+    //don't forget to add an argument here
+    const q = `SELECT password, id FROM users
+    WHERE email = $1`;
+    const params = [val];
+    return db.query(q, params);
+};

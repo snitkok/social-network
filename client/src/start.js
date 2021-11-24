@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import Welcome from './welcome';
+import Welcome from "./components/welcome";
 
 fetch("/user/id.json")
     .then((response) => response.json())
@@ -8,10 +8,8 @@ fetch("/user/id.json")
             ReactDOM.render(<Welcome />, document.querySelector("main"));
         } else {
             ReactDOM.render(
-                <img src="/logo.gif" alt="logo" />,
+                <img src="/welcome.png" alt="logo" className="logo" />,
                 document.querySelector("main")
             );
         }
     });
-
-
