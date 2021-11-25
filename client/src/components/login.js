@@ -1,13 +1,3 @@
-// import { Link } from "react-router-dom";
-// export default function Login() {
-//     return (
-//         <div>
-//             Login page
-//             <Link to="/">Click here to register</Link>
-//         </div>
-//     );
-// }
-
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -21,7 +11,29 @@ export default class Login extends React.Component {
             [e.target.name]: e.target.value,
         });
     }
-    
+    submit() {
+        fetch("/login.json", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password,
+            }),
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                if (data.success) {
+                    location.replace("/");
+                } else {
+                    this.setState({
+                        error: true,
+                    });
+                }
+            });
+    }
+
     render() {
         return (
             <div>
@@ -51,7 +63,8 @@ export default class Login extends React.Component {
                 <br />
                 <button onClick={() => this.submit()}>Login</button>
                 <br />
-                <Link to="/reset">Click here to reset password</Link><br/>
+                <Link to="/reset">Click here to reset password</Link>
+                <br />
                 <Link to="/">Click here to register</Link>
             </div>
         );

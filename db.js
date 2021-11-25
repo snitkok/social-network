@@ -58,3 +58,22 @@ module.exports.updatePassword = (email, password) => {
     const params = [email, password];
     return db.query(q, params);
 };
+
+//----------------------------------------
+module.exports.getUserData = (id) => {
+
+    const q = `SELECT * FROM users
+    WHERE id = $1`;
+    const params = [id];
+    return db.query(q, params);
+};
+
+
+// -----------------------------
+module.exports.updatePicture = (id, image_url) => {
+    const q = ` UPDATE users SET image_url = $2
+    WHERE id = $1
+    RETURNING image_url`;
+    const params = [id, image_url];
+    return db.query(q, params);
+};

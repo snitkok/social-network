@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 export default class Registration extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            uploaderIsVisible: false,
+        };
     }
     handleChange(e) {
         this.setState({
@@ -82,8 +84,3 @@ export default class Registration extends React.Component {
         );
     }
 }
-
-
-
-
-

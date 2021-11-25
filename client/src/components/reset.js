@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class Reset extends React.Component {
     constructor(props) {
+        // 🔴 Can’t use `this` yet
         super(props);
+        // ✅ Now it’s okay though
         this.state = {
             stage: 1,
             error: false,
@@ -85,6 +88,7 @@ export default class Reset extends React.Component {
                         type="email"
                         onChange={(e) => this.handleEmail(e)}
                     />
+                    <br />
                     <button onClick={() => this.submitStart()}>Submit</button>
                 </div>
             );
@@ -115,7 +119,23 @@ export default class Reset extends React.Component {
                 </div>
             );
         } else if (this.state.stage === 3) {
-            return <h2>success</h2>;
+            return (
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alightItems: "center",
+                    }}
+                >
+                    <br />
+                    <h1>Succeeeeeessssssss!!!</h1>
+                    <img
+                        style={{ width: "20rem", height: "auto" }}
+                        src="/giphy.gif"
+                    />
+                    <Link to="/login">Log In</Link>
+                </div>
+            );
         }
     }
 
