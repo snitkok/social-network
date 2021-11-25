@@ -29,7 +29,7 @@ const diskStorage = multer.diskStorage({
 const uploader = multer({
     storage: diskStorage,
     limits: {
-        fileSize: 2097152,
+        fileSize: 3097152,
     },
 });
 app.use(
@@ -178,8 +178,10 @@ app.post(
         const { filename } = req.file;
         const url = `${amazonUrl}${filename}`;
         try {
-            const updatedPic = await db.updatePicture(url, req.session.userID);
-            res.status(200).json({ updatedPic });
+            console.log("req.session.userId, url", req.session.userId, url);
+            const updatedPic = await db.updatePicture(req.session.userId, url);
+            console.log("updated pic *******", updatedPic);
+            res.status(200).json(updatedPic.rows[0]);
         } catch (err) {
             console.log("error in /userdata/profile/picture", err);
         }

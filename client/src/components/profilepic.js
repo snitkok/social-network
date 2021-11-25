@@ -1,12 +1,15 @@
-export default function Profilepic({ first, last, imageUrl }) {
+export default function Profilepic({ first, last, imageUrl, toggleUploader }) {
     imageUrl = imageUrl || "default.png";
 
     return (
-        <img
-            // onClick={logAgain}
-            src={imageUrl}
-            alt={`${first} ${last}`}
-            id="navbar-avatar"
-        />
+        <>
+            <img
+                src={imageUrl}
+                alt={`${first} ${last}`}
+                id="image"
+                onClick={toggleUploader}
+
+            />
+        </>
     );
 }

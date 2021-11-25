@@ -32,3 +32,52 @@ button {
     width: 100px;
     height: 25px;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#image {
+    width: 100px;
+    height: 100px;
+}
+
+#headerlogo {
+    width: 100px;
+    height: 100px;
+}
+
+#modal {
+    width: 35vw;
+    height: 35vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1010;
+    background-color: #fcde67;
+    font-size: 20px;
+}
+
+#modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 35vw;
+    height: 35vh;
+}
+
+#modal-overlay {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.527);
+}
+
+

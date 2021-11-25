@@ -10,11 +10,9 @@ export default class app extends Component {
             first: "",
             last: "",
             imageUrl: "",
-            
         };
         this.toggleUploader = this.toggleUploader.bind(this);
-        this.logNamePlusSomethingElse =
-            this.logNamePlusSomethingElse.bind(this);
+        this.updateProfileImg = this.updateProfileImg.bind(this);
     }
 
     componentDidMount() {
@@ -27,18 +25,21 @@ export default class app extends Component {
         })
             .then((resp) => resp.json())
             .then((data) => {
-                if (data.success) {
+                if (data) {
                     this.setState({
                         first: data.first,
                         last: data.last,
-                        imageUrl: data.image,
+                        imageUrl: data.image_url,
                     });
+                    
                 } else {
                     this.setState({
                         error: true,
                     });
+     
                 }
             });
+            
     }
 
     toggleUploader() {
@@ -47,29 +48,35 @@ export default class app extends Component {
         });
     }
 
-    logNamePlusSomethingElse(val) {
-        console.log(this.state.name + val);
+    updateProfileImg(val) {
+        this.setState({
+            imageUrl: val,
+        });
     }
 
     render() {
         return (
             <>
-                <header>
+                <header className="header">
                     <img
-                        id="homepage-logo"
+                        id="headerlogo"
                         src="https://alsimageuniverse.s3.amazonaws.com/jhHC3lw0fMcoDXJFxNpnk_6iFWpR92aG.png"
                         alt="commonground logo"
                     />
                     <ProfilePic
                         first={this.state.name}
-                        last="Quinn"
-                        imageUrl="http://www.magicalmaths.org/wp-content/uploads/2014/06/cool-teacher.jpg"
+                        last={this.state.name}
+                        imageUrl={this.state.imageUrl}
+                        toggleUploader={this.toggleUploader}
                     />
+                    {this.state.uploaderIsVisible && (
+                        <Uploader
+
+                            loggerFunc={this.toggleUploader}
+                            updateProfileImg={this.updateProfileImg}
+                        />
+                    )}
                 </header>
-                <button onClick={this.toggleUploader}>Toggle uploader</button>
-                {this.state.uploaderIsVisible && (
-                    <Uploader loggerFunc={this.logNamePlusSomethingElse} />
-                )}
             </>
         );
     }
