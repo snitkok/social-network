@@ -1,6 +1,7 @@
 import { Component } from "react";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
+import Profile from "./profile";
 
 export default class app extends Component {
     constructor(props) {
@@ -10,9 +11,11 @@ export default class app extends Component {
             first: "",
             last: "",
             imageUrl: "",
+            bio: "",
         };
         this.toggleUploader = this.toggleUploader.bind(this);
         this.updateProfileImg = this.updateProfileImg.bind(this);
+        this.setBio = this.setBio.bind(this);
     }
 
     componentDidMount() {
@@ -25,21 +28,20 @@ export default class app extends Component {
         })
             .then((resp) => resp.json())
             .then((data) => {
+                console.log("data", data);
                 if (data) {
                     this.setState({
                         first: data.first,
                         last: data.last,
                         imageUrl: data.image_url,
+                        bio: data.bio,
                     });
-                    
                 } else {
                     this.setState({
                         error: true,
                     });
-     
                 }
             });
-            
     }
 
     toggleUploader() {
@@ -51,6 +53,14 @@ export default class app extends Component {
     updateProfileImg(val) {
         this.setState({
             imageUrl: val,
+            ploaderIsVisible: false,
+        });
+    }
+
+    setBio(val) {
+        console.log("val&&&&&&&&&&", this.state);
+        this.setState({
+            bio: val,
         });
     }
 
@@ -64,19 +74,27 @@ export default class app extends Component {
                         alt="commonground logo"
                     />
                     <ProfilePic
-                        first={this.state.name}
-                        last={this.state.name}
+                        first={this.state.first}
+                        last={this.state.last}
                         imageUrl={this.state.imageUrl}
-                        toggleUploader={this.toggleUploader}
+                        loggerFunc={this.toggleUploader}
                     />
                     {this.state.uploaderIsVisible && (
                         <Uploader
-
                             loggerFunc={this.toggleUploader}
                             updateProfileImg={this.updateProfileImg}
                         />
                     )}
                 </header>
+                <hr />
+                <Profile
+                    first={this.state.first}
+                    last={this.state.last}
+                    imageUrl={this.state.imageUrl}
+                    bio={this.state.bio}
+                    loggerFunc={this.toggleUploader}
+                    setBio={this.setBio}
+                />
             </>
         );
     }

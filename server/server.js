@@ -154,12 +154,13 @@ app.get("/user.json", async (req, res) => {
     try {
         const userId = req.session.userId;
         const userInfo = await db.getUserData(userId);
-        let { first, last, image_url } = userInfo.rows[0];
+        const { first, last, image_url, bio } = userInfo.rows[0];
         res.json({
             success: false,
             first: first,
             last: last,
             image_url: image_url,
+            bio: bio,
         });
     } catch (err) {
         res.json({
@@ -187,6 +188,21 @@ app.post(
         }
     }
 );
+
+//----------------------------------------Update our profile--------------------------------------------
+app.post("/update/profile", async (req, res) => {
+    const { bio } = req.body;
+    const userId = req.session.userId;
+    console.log("req.body", req.body);
+    console.log("userId", userId);
+    try {
+        const updatedBio = await db.updateProfile(userId, bio);
+        console.log("updated bio *******", updatedBio);
+        res.json({ success: true, bio: updatedBio.rows[0].bio });
+    } catch (err) {
+        console.log("error in /update/profile", err);
+    }
+});
 
 //Must stay at the end
 app.get("*", function (req, res) {

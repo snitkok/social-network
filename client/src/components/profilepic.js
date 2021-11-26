@@ -1,5 +1,5 @@
-export default function Profilepic({ first, last, imageUrl, toggleUploader }) {
-    imageUrl = imageUrl || "default.png";
+export default function Profilepic({ first, last, imageUrl, loggerFunc }) {
+    imageUrl = imageUrl || "welcome.png";
 
     return (
         <>
@@ -7,8 +7,7 @@ export default function Profilepic({ first, last, imageUrl, toggleUploader }) {
                 src={imageUrl}
                 alt={`${first} ${last}`}
                 id="image"
-                onClick={toggleUploader}
-
+                onClick={loggerFunc}
             />
         </>
     );

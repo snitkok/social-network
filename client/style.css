@@ -1,6 +1,6 @@
 body {
-    background-image: url("/bg.png");
-    color: white;
+    background-color: lightgray;
+    color: rgb(13, 13, 32);
 }
 
 input,
@@ -38,7 +38,7 @@ button {
     justify-content: space-between;
 }
 
-#image {
+header #image {
     width: 100px;
     height: 100px;
 }
@@ -56,7 +56,7 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1010;
-    background-color: #fcde67;
+    background-color: rgb(184, 181, 181);
     font-size: 20px;
 }
 
@@ -79,5 +79,7 @@ button {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.527);
 }
-
-
+#bioImg img{
+    width: 300px;
+    height: 300px;
+}

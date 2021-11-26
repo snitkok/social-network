@@ -56,7 +56,14 @@ export default class Uploader extends Component {
                             accept="image/*"
                         />
                         <br />
-                        <button onClick={() => this.upload()}>submit</button>
+                        <button
+                            onClick={() => {
+                                this.upload();
+                                this.props.loggerFunc();
+                            }}
+                        >
+                            submit
+                        </button>
                     </div>
                 </div>
                 <div id="modal-overlay" onClick={this.props.loggerFunc}></div>
