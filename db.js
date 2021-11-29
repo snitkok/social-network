@@ -83,3 +83,16 @@ module.exports.updateProfile = (id, bio) => {
     const params = [id, bio];
     return db.query(q, params);
 };
+
+//-------------------------------------
+module.exports.searchedUserInfo = (val) => {
+    const q = `SELECT id, first, last, image_url FROM users WHERE first ILIKE ($1)`;
+    const param = [val + "%"];
+    return db.query(q, param);
+};
+
+module.exports.selectThreeLast = (id) => {
+    const q = `SELECT id, first, last, image_url FROM users where id != $1 ORDER BY id DESC LIMIT 3;`;
+    const params = [id];
+    return db.query(q, params);
+};

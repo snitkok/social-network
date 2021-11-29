@@ -39,7 +39,10 @@ export default class Bio extends Component {
             .then((resp) => resp.json())
             .then((data) => {
                 if (data.success) {
-                    console.log("success****!!!!!!!!!!!!!!!!!*******", data.bio);
+                    console.log(
+                        "success****!!!!!!!!!!!!!!!!!*******",
+                        data.bio
+                    );
                     // this.setState({
                     //     bio: data.bio,
                     // });
@@ -57,7 +60,7 @@ export default class Bio extends Component {
                     <div>
                         <textarea
                             onChange={(e) => this.handleChange(e)}
-                            value={this.props.bio}
+                            defaultValue={this.props.bio}
                         />
                         <br />
                         <button

@@ -2,6 +2,9 @@ import { Component } from "react";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
+import FindPeople from "./findpeople";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class app extends Component {
     constructor(props) {
@@ -67,34 +70,55 @@ export default class app extends Component {
     render() {
         return (
             <>
-                <header className="header">
-                    <img
-                        id="headerlogo"
-                        src="https://alsimageuniverse.s3.amazonaws.com/jhHC3lw0fMcoDXJFxNpnk_6iFWpR92aG.png"
-                        alt="commonground logo"
-                    />
-                    <ProfilePic
-                        first={this.state.first}
-                        last={this.state.last}
-                        imageUrl={this.state.imageUrl}
-                        loggerFunc={this.toggleUploader}
-                    />
-                    {this.state.uploaderIsVisible && (
-                        <Uploader
-                            loggerFunc={this.toggleUploader}
-                            updateProfileImg={this.updateProfileImg}
+                {" "}
+                <BrowserRouter>
+                    <header className="header">
+                        <img
+                            id="headerlogo"
+                            src="https://alsimageuniverse.s3.amazonaws.com/jhHC3lw0fMcoDXJFxNpnk_6iFWpR92aG.png"
+                            alt="commonground logo"
                         />
-                    )}
-                </header>
-                <hr />
-                <Profile
-                    first={this.state.first}
-                    last={this.state.last}
-                    imageUrl={this.state.imageUrl}
-                    bio={this.state.bio}
-                    loggerFunc={this.toggleUploader}
-                    setBio={this.setBio}
-                />
+
+                        <ProfilePic
+                            first={this.state.first}
+                            last={this.state.last}
+                            imageUrl={this.state.imageUrl}
+                            loggerFunc={this.toggleUploader}
+                        />
+                        {this.state.uploaderIsVisible && (
+                            <Uploader
+                                loggerFunc={this.toggleUploader}
+                                updateProfileImg={this.updateProfileImg}
+                            />
+                        )}
+
+                        <Link to="/users">
+                            <p>Find users</p>
+                        </Link>
+                        <Link to="/">
+                            <p>Profile</p>
+                        </Link>
+                    </header>
+                    <hr />
+
+                    <div>
+                        <Route exact path="/">
+                            <Profile
+                                first={this.state.first}
+                                last={this.state.last}
+                                imageUrl={this.state.imageUrl}
+                                bio={this.state.bio}
+                                loggerFunc={this.toggleUploader}
+                                setBio={this.setBio}
+                            />
+                        </Route>
+                    </div>
+                    <div>
+                        <Route exact path="/users">
+                            <FindPeople />
+                        </Route>
+                    </div>
+                </BrowserRouter>
             </>
         );
     }

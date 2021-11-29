@@ -203,6 +203,38 @@ app.post("/update/profile", async (req, res) => {
         console.log("error in /update/profile", err);
     }
 });
+//---------------------------------------------------------------------------
+app.get("/users/last", async (req, res) => {
+    try {
+        const userId = req.session.userId;
+        const lastThree = await db.selectThreeLast(userId);
+        console.log("updated found users *******", lastThree);
+        res.json({ success: true, lastThree });
+    } catch (err) {
+        console.log("error in /users/last");
+        res.json({
+            success: false,
+        });
+    }
+});
+//
+
+//---------------------------------------------------------------------------
+app.get("/users/:val", async (req, res) => {
+    try {
+        // const userId = req.session.userId;
+        const queryStr = req.params.val;
+        const searchedUserInfo = await db.searchedUserInfo(queryStr);
+        console.log("updated found users *******", searchedUserInfo);
+        res.json({ success: true, searchedUserInfo });
+    } catch (err) {
+        console.log("error in  /users/:id");
+        res.json({
+            success: false,
+        });
+    }
+});
+//
 
 //Must stay at the end
 app.get("*", function (req, res) {
