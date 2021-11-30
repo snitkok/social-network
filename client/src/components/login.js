@@ -6,12 +6,17 @@ export default class Login extends React.Component {
         super(props);
         this.state = {};
     }
+
+    //const [userInput, setUserInput ] = useSttae({});
+
+    //const [error, setError ] = useSttae(false);
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value,
         });
     }
     submit() {
+        //add prevent defsult
         fetch("/login.json", {
             method: "POST",
             headers: {

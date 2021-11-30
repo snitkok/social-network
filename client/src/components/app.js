@@ -3,6 +3,7 @@ import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
 import FindPeople from "./findpeople";
+import OtherProfile from "./otherprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -98,6 +99,7 @@ export default class app extends Component {
                         <Link to="/">
                             <p>Profile</p>
                         </Link>
+                        
                     </header>
                     <hr />
 
@@ -116,6 +118,11 @@ export default class app extends Component {
                     <div>
                         <Route exact path="/users">
                             <FindPeople />
+                        </Route>
+                    </div>
+                    <div>
+                        <Route exact path="/user/:id">
+                            <OtherProfile />
                         </Route>
                     </div>
                 </BrowserRouter>

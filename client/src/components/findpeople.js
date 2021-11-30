@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function FindPeople() {
     const [search, findUsers] = useState("");
@@ -10,8 +11,6 @@ export default function FindPeople() {
     useEffect(() => {
         let abort;
         (async () => {
-            //if search-field is empty  - show three last users
-
             if (!search) {
                 const res = await fetch("/users/last");
                 const data = await res.json();
@@ -40,10 +39,15 @@ export default function FindPeople() {
             {results &&
                 results.map((result) => (
                     <div key={result.id}>
-                        <img className="results" src={result.image_url}></img>
-                        <p>
-                            {result.first} {result.last}
-                        </p>
+                        <Link to={`/user/${result.id}`}>
+                            <img
+                                className="results"
+                                src={result.image_url}
+                            ></img>
+                            <p>
+                                {result.first} {result.last}
+                            </p>
+                        </Link>
                     </div>
                 ))}
         </div>

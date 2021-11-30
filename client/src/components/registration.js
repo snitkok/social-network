@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import { useForm } from "useform.js";
 
 export default class Registration extends React.Component {
     constructor(props) {
@@ -8,6 +9,14 @@ export default class Registration extends React.Component {
             uploaderIsVisible: false,
         };
     }
+
+    //const [userInput, setUserInput ] = useSttae({});   do not need it //replace with useform
+
+    //+++++const [userInput, handleChange and other ] = useForm();
+
+    //const [error, setError ] = useSttae(false);
+    //+++++++const [submit, error] = useFormSubmit('/register', userInput);
+
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value,

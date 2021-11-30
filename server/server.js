@@ -235,7 +235,28 @@ app.get("/users/:val", async (req, res) => {
     }
 });
 //
+//-----------------------------------------------------------------------------
+app.get("/api/user/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userInfo = await db.getUserData(id);
+        const { first, last, image_url, bio } = userInfo.rows[0];
+        res.json({
+            success: true,
+            currentUserId: req.session.userId,
+            first: first,
+            last: last,
+            image_url: image_url,
+            bio: bio,
+        });
+    } catch (err) {
+        res.json({
+            success: false,
+        });
+    }
+});
 
+//
 //Must stay at the end
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
