@@ -47,7 +47,7 @@ export default function FriendButton({ viewedUserId }) {
                 console.log("response%%%%%%%%%%%%%%%%%%🦞", result);
                 console.log("viewedUserId", viewedUserId);
                 console.log("buttonText", buttonText);
-                // setButtonText(handleButtonText(result));
+                setButtonText(handleButtonText(result));
             });
     }
 
