@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const express = require("express");
 const app = express();
 const compression = require("compression");
@@ -257,6 +258,79 @@ app.get("/api/user/:id", async (req, res) => {
 });
 
 //
+//------------------------------------------------------------------------------
+app.get("/friendshipstatus/:id", async (req, res) => {
+    try {
+        const data = await db.friendshipStatus(
+            req.session.userId,
+            req.params.id
+        );
+        if (!data.rows.length) {
+            res.json({ requestSent: false });
+            console.log("no data", data);
+        } else {
+            console.log("req.params.id ************", req.params.id);
+            console.log("req.session.userId", req.session.userId);
+            const { sender_id, recipient_id, accepted } = data.rows[0];
+            console.log("data.rows[0]", data.rows[0]);
+            res.json({
+                success: true,
+                userId: req.session.userId,
+                sender_id: sender_id,
+                recipient_id: recipient_id,
+                accepted: accepted,
+            });
+        }
+    } catch (err) {
+        res.json({
+            success: false,
+        });
+        console.log("string is empty", err);
+    }
+});
+//
+//---------------------------------------------------------
+app.post("/update/friendshipstatus", (req, res) => {
+    const viewedUserId = parseInt(req.body.viewedUserId);
+    const buttonText = req.body.buttonText;
+    const loggedInUserId = req.session.userId;
+    console.log("req.body🦎", req.body);
+    console.log("userId", loggedInUserId);
+    if (buttonText == "Send Friend Request") {
+        db.sendRequest(loggedInUserId, viewedUserId)
+            .then((result) => {
+                console.log("result 🐳", result);
+                res.json(result);
+            })
+            .catch((err) => {
+                console.log("error in update friends", err);
+            });
+    } else if (buttonText == "Unfriend" || buttonText == "Cancel Friend Request") {
+        db.unfriendFriend(loggedInUserId, viewedUserId)
+            .then((result) => {
+                console.log("result 🐳", result);
+                res.json(result);
+            })
+            .catch((err) => {
+                console.log("error in update friends", err);
+            });
+    } else if (buttonText == "Accept Friend Request") {
+        db.acceptFriend(loggedInUserId, viewedUserId)
+            .then((result) => {
+                console.log("result 🐳", result);
+                res.json(result);
+            })
+            .catch((err) => {
+                console.log("error in update friends", err);
+            });
+    }
+    // db.friendshipStatus(req.session.userId, req.params.id).then((result) => {
+    //     console.log("🐙", result);
+    //     res.json(result);
+    // });
+});
+//
+
 //Must stay at the end
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));

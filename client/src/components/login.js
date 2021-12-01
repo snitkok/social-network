@@ -9,7 +9,7 @@ export default class Login extends React.Component {
 
     //const [userInput, setUserInput ] = useSttae({});
 
-    //const [error, setError ] = useSttae(false);
+    //const [error, setError ] = useSttae();
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value,

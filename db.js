@@ -96,3 +96,37 @@ module.exports.selectThreeLast = (id) => {
     const params = [id];
     return db.query(q, params);
 };
+
+//---------------------------------------------------
+module.exports.friendshipStatus = (sender_id, recipient_id) => {
+    const q = `SELECT * FROM friendships
+    WHERE (recipient_id = $1 AND sender_id = $2)
+    OR (recipient_id = $2 AND sender_id = $1)`;
+    const params = [sender_id, recipient_id];
+    return db.query(q, params);
+};
+
+//------------------------------------------------------------------------
+module.exports.sendRequest = (sender_id, recipient_id) => {
+    const q = `INSERT INTO friendships (sender_id, recipient_id)
+    VALUES($1, $2)`;
+    const params = [sender_id, recipient_id];
+    return db.query(q, params);
+};
+
+module.exports.acceptFriend = (sender_id, recipient_id) => {
+    const q = ` UPDATE friendships SET accepted = true
+    WHERE (recipient_id = $1 AND sender_id = $2)
+    OR (recipient_id = $2 AND sender_id = $1)`;
+    const params = [sender_id, recipient_id];
+    return db.query(q, params);
+};
+
+
+module.exports.unfriendFriend = (sender_id, recipient_id) => {
+    const q = ` DELETE FROM friendships
+     WHERE (recipient_id = $1 AND sender_id = $2)
+    OR (recipient_id = $2 AND sender_id = $1)`;
+    const params = [recipient_id, sender_id];
+    return db.query(q, params);
+};

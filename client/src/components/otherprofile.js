@@ -1,5 +1,6 @@
 import { useParams, useHistory } from "react-router";
 import { useEffect, useState } from "react";
+import FriendButton from "./friendbutton";
 
 export default function OtherProfile() {
     const [image_url, setImg] = useState("");
@@ -13,7 +14,6 @@ export default function OtherProfile() {
         fetch(`/api/user/${id}`)
             .then((res) => res.json())
             .then((result) => {
-
                 if (result.currentUserId == id) {
                     history.replace("/");
                 }
@@ -44,6 +44,7 @@ export default function OtherProfile() {
                     <br /> {bio}
                 </p>
             </div>
+            <FriendButton viewedUserId={id} />
         </div>
     );
 }
