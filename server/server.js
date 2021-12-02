@@ -269,12 +269,8 @@ app.get("/friendshipstatus/:id", async (req, res) => {
             res.json({ requestSent: false });
             console.log("no data", data);
         } else {
-            console.log("req.params.id ************", req.params.id);
-            console.log("req.session.userId", req.session.userId);
             const { sender_id, recipient_id, accepted } = data.rows[0];
-            console.log("data.rows[0]", data.rows[0]);
             res.json({
-                success: true,
                 userId: req.session.userId,
                 sender_id: sender_id,
                 recipient_id: recipient_id,
@@ -294,12 +290,11 @@ app.post("/update/friendshipstatus", (req, res) => {
     const viewedUserId = parseInt(req.body.viewedUserId);
     const buttonText = req.body.buttonText;
     const loggedInUserId = req.session.userId;
-    console.log("req.body🦎", req.body);
-    console.log("userId", loggedInUserId);
+
     if (buttonText == "Send Friend Request") {
         db.sendRequest(loggedInUserId, viewedUserId)
-            .then((result) => {
-                console.log(result);
+            .then(() => {
+            
                 return db.friendshipStatus(loggedInUserId, viewedUserId);
             })
             .then((result) => {
@@ -310,7 +305,6 @@ app.post("/update/friendshipstatus", (req, res) => {
                     const { sender_id, recipient_id, accepted } =
                         result.rows[0];
                     res.json({
-                        success: true,
                         userId: req.session.userId,
                         sender_id: sender_id,
                         recipient_id: recipient_id,
@@ -326,8 +320,7 @@ app.post("/update/friendshipstatus", (req, res) => {
         buttonText == "Cancel Friend Request"
     ) {
         db.unfriendFriend(loggedInUserId, viewedUserId)
-            .then((result) => {
-                console.log(result);
+            .then(() => {
                 return db.friendshipStatus(loggedInUserId, viewedUserId);
             })
             .then((result) => {
@@ -337,7 +330,6 @@ app.post("/update/friendshipstatus", (req, res) => {
                     const { sender_id, recipient_id, accepted } =
                         result.rows[0];
                     res.json({
-                        success: true,
                         userId: req.session.userId,
                         sender_id: sender_id,
                         recipient_id: recipient_id,
@@ -350,8 +342,7 @@ app.post("/update/friendshipstatus", (req, res) => {
             });
     } else if (buttonText == "Accept Friend Request") {
         db.acceptFriend(loggedInUserId, viewedUserId)
-            .then((result) => {
-                console.log(result);
+            .then(() => {
                 return db.friendshipStatus(loggedInUserId, viewedUserId);
             })
             .then((result) => {
@@ -362,7 +353,6 @@ app.post("/update/friendshipstatus", (req, res) => {
                     const { sender_id, recipient_id, accepted } =
                         result.rows[0];
                     res.json({
-                        success: true,
                         userId: req.session.userId,
                         sender_id: sender_id,
                         recipient_id: recipient_id,
@@ -374,10 +364,6 @@ app.post("/update/friendshipstatus", (req, res) => {
                 console.log("error in update friends", err);
             });
     }
-    // db.friendshipStatus(req.session.userId, req.params.id).then((result) => {
-    //     console.log("🐙", result);
-    //     res.json(result);
-    // });
 });
 //
 
