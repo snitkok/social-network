@@ -294,7 +294,6 @@ app.post("/update/friendshipstatus", (req, res) => {
     if (buttonText == "Send Friend Request") {
         db.sendRequest(loggedInUserId, viewedUserId)
             .then(() => {
-            
                 return db.friendshipStatus(loggedInUserId, viewedUserId);
             })
             .then((result) => {
@@ -348,7 +347,6 @@ app.post("/update/friendshipstatus", (req, res) => {
             .then((result) => {
                 if (!result.rows.length) {
                     res.json({ requestSent: false });
-                    console.log("no data", result);
                 } else {
                     const { sender_id, recipient_id, accepted } =
                         result.rows[0];
@@ -365,6 +363,42 @@ app.post("/update/friendshipstatus", (req, res) => {
             });
     }
 });
+//
+
+//----------------------------------------------------------------------------------------------
+//Friendlist
+
+//GET /friends-and-wannabes - returns the list of friends and wannabes for the logged in user
+app.get("/friends-and-wannabes", async (req, res) => {
+    try {
+        const loggedInUserId = req.session.userId;
+
+        const data = await db.getFriendsAndWannabes(loggedInUserId);
+        return res.json(data.rows);
+    } catch (err) {
+        res.json({
+            success: false,
+        });
+        console.log("error in friends-and-wannabes", err);
+    }
+});
+
+app.post("/friendship/accept/:id", async (req, res) => {
+    const viewedUserId = req.params.id;
+    const loggedInUserId = req.session.userId;
+    console.log("id, loggedInUserId🌻", viewedUserId, loggedInUserId);
+    const data = await db.acceptFriend(viewedUserId, loggedInUserId);
+    return res.json({ success: data.length !== 0 });
+});
+
+app.post("/friendship/terminate/:id", async (req, res) => {
+    const viewedUserId = req.params.id;
+    const loggedInUserId = req.session.userId;
+    console.log("id, loggedInUserId🌻", viewedUserId, loggedInUserId);
+    await db.unfriendFriend(viewedUserId, loggedInUserId);
+    return res.json({ success: true });
+});
+
 //
 
 //Must stay at the end

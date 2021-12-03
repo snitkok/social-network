@@ -3,6 +3,7 @@ import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
 import FindPeople from "./findpeople";
+import Friends from "./friends";
 import OtherProfile from "./otherprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -76,7 +77,7 @@ export default class app extends Component {
                     <header className="header">
                         <img
                             id="headerlogo"
-                            src="https://alsimageuniverse.s3.amazonaws.com/jhHC3lw0fMcoDXJFxNpnk_6iFWpR92aG.png"
+                            src="/welcome.gif"
                             alt="commonground logo"
                         />
 
@@ -99,7 +100,9 @@ export default class app extends Component {
                         <Link to="/">
                             <p>Profile</p>
                         </Link>
-                        
+                        <Link to="/friends">
+                            <p>My friends</p>
+                        </Link>
                     </header>
                     <hr />
 
@@ -123,6 +126,11 @@ export default class app extends Component {
                     <div>
                         <Route exact path="/user/:id">
                             <OtherProfile />
+                        </Route>
+                    </div>
+                    <div>
+                        <Route exact path="/friends">
+                            <Friends />
                         </Route>
                     </div>
                 </BrowserRouter>

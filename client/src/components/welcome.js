@@ -8,7 +8,7 @@ export default class Welcome extends Component {
     render() {
         return (
             <div id="welcome">
-                <img src="/welcome.png" className="logo" />
+                <img src="/welcome.gif" className="logo" />
                 <BrowserRouter>
                     <div>
                         <Route exact path="/">
