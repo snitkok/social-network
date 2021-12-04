@@ -26,6 +26,7 @@ export default function Friends() {
             .then((res) => res.json())
             .then((data) => {
                 dispatch(receiveFriendsAndWannabes(data));
+                console.log("friends-and-wannabes", data);
             })
             .catch((err) => {
                 console.log("error in friends.js", err);
@@ -46,7 +47,7 @@ export default function Friends() {
     }
 
     function rejectFriendReq(id) {
-        fetch(`/update/friendshipstatus/${id}`, {
+        fetch(`/friendship/terminate/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -74,7 +75,9 @@ export default function Friends() {
                                     {individual.first} {individual.last}
                                 </p>
                             </Link>
-                            <button onClick= { () =>  acceptFriendReq(individual.id)}>
+                            <button
+                                onClick={() => rejectFriendReq(individual.id)}
+                            >
                                 Unfriend
                             </button>
                         </div>
@@ -95,7 +98,9 @@ export default function Friends() {
                                     {individual.first} {individual.last}
                                 </p>
                             </Link>
-                            <button onClick={() => rejectFriendReq(individual.id)}>
+                            <button
+                                onClick={() => acceptFriendReq(individual.id)}
+                            >
                                 Accept Request
                             </button>
                         </div>

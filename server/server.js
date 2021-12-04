@@ -387,8 +387,8 @@ app.post("/friendship/accept/:id", async (req, res) => {
     const viewedUserId = req.params.id;
     const loggedInUserId = req.session.userId;
     console.log("id, loggedInUserId🌻", viewedUserId, loggedInUserId);
-    const data = await db.acceptFriend(viewedUserId, loggedInUserId);
-    return res.json({ success: data.length !== 0 });
+    await db.acceptFriend(viewedUserId, loggedInUserId);
+    return res.json({ success: true });
 });
 
 app.post("/friendship/terminate/:id", async (req, res) => {
