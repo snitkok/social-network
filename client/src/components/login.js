@@ -41,36 +41,47 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Login!</h3>
+            <div className="flex flex-col items-center">
+                <h3 className=" text-4xl animate-bounce">Login!</h3>
                 {this.state.error && (
                     <div className="error">
                         Something went wrong. Please try again.
                     </div>
                 )}
-                <label>Email</label>
-                <br />
+                <label className="mt-12">Email</label>
+            
                 <input
                     name="email"
                     placeholder="email"
                     type="email"
+                    className="border-2 border-yellow-300 rounded"
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br />
                 <label>Password</label>
-                <br />
+             
                 <input
                     name="password"
                     placeholder="password"
                     type="password"
                     onChange={(e) => this.handleChange(e)}
+                    className="border-2 border-yellow-300 rounded"
                 />
+            
+                <button
+                    className=" mt-4 mb-4 p-1 rounded transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-300 transform hover:-translate-y-1 hover:scale-110"
+                    onClick={() => this.submit()}
+                >
+                    Login
+                </button>
                 <br />
-                <button onClick={() => this.submit()}>Login</button>
+                <Link to="/reset" className="hover:text-yellow-400">
+                    Click here to reset password
+                </Link>
                 <br />
-                <Link to="/reset">Click here to reset password</Link>
-                <br />
-                <Link to="/">Click here to register</Link>
+                <Link to="/" className="hover:text-yellow-400">
+                    Click here to register
+                </Link>
             </div>
         );
     }

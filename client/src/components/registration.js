@@ -48,29 +48,30 @@ export default class Registration extends React.Component {
     }
     render() {
         return (
-            <div>
-                <h3>Sign up!</h3>
+            <div className="flex flex-col items-center">
+                <h3 className="text-4xl animate-bounce">Sign up!</h3>
                 {this.state.error && <div className="error">Oops!</div>}
 
-                <label>First Name</label>
-                <br />
+                <label className="mt-12">First Name</label>
+
                 <input
+                    className=" border-2 border-yellow-300 rounded"
                     name="first"
                     placeholder="first name"
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br />
                 <label>Last Name</label>
-                <br />
                 <input
+                    className="border-2 border-yellow-300 rounded"
                     name="last"
                     placeholder="last name"
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br />
                 <label>Email</label>
-                <br />
                 <input
+                    className="border-2 border-yellow-300 rounded"
                     name="email"
                     placeholder="email"
                     type="email"
@@ -78,17 +79,23 @@ export default class Registration extends React.Component {
                 />
                 <br />
                 <label>Password</label>
-                <br />
                 <input
+                    className="border-2 border-yellow-300 rounded"
                     name="password"
                     placeholder="password"
                     type="password"
                     onChange={(e) => this.handleChange(e)}
                 />
+                <button
+                    className=" mt-4 mb-4 p-1 rounded transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-300 transform hover:-translate-y-1 hover:scale-110"
+                    onClick={() => this.submit()}
+                >
+                    Submit
+                </button>
                 <br />
-                <button onClick={() => this.submit()}>submit</button>
-                <br />
-                <Link to="/login">Click here to login</Link>
+                <Link to="/login" className="hover:text-yellow-400">
+                    Click here to login
+                </Link>
             </div>
         );
     }

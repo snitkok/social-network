@@ -35,12 +35,10 @@ export default function FindPeople() {
 
     return (
         <div>
-            {" "}
             <div className="m-4 flex flex-col inline-flex">
-                {" "}
                 <h1 className="text-4xl">Find users</h1>
                 <input
-                    className="mt-4 mb-4"
+                    className="mt-4 mb-4 border-2 border-yellow-300 rounded"
                     type="text"
                     onChange={(e) => findUsers(e.target.value)}
                 />
@@ -48,14 +46,14 @@ export default function FindPeople() {
                     results.map((result) => (
                         <div
                             key={result.id}
-                            className="border-4 border-white m-4 bg-pink-600"
+                            className="border-4 border-white m-4"
                         >
                             <Link to={`/user/${result.id}`}>
                                 <img
-                                    className="results rounded-full h-24 w-24 flex items-center justify-center h-64 w-48 mt-4 mb-4 ml-2 mr-2 "
+                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
                                     src={result.image_url}
                                 ></img>
-                                <hr />
+                                <hr className="border-yellow-300" />
                                 <p className="mt-2 mb-2 text-center">
                                     {result.first} {result.last}
                                 </p>

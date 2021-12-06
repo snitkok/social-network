@@ -67,23 +67,23 @@ export default function Friends() {
 
     return (
         <div>
-            <h2>Your friends</h2>
+            <h2 className="m-4 text-3xl text-yellow-400">Your friends</h2>
             <div className="friends flex flex-row mb-20">
                 {currentFriends &&
                     currentFriends.map((individual) => (
-                        <div key={individual.id} className="m-2 justify-center">
+                        <div key={individual.id} className="m-4 text-center">
                             <Link to={`/user/${individual.id}`}>
                                 <img
-                                    className="results 
-                                    h-64 w-48 p-2"
+                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
                                     src={individual.image_url}
                                 ></img>
-                                <p className="flex-shrink">
+                                <hr className="border-yellow-300" />
+                                <p>
                                     {individual.first} {individual.last}
                                 </p>
                             </Link>
                             <button
-                                className="rounded-full py-3 px-6 transition duration-500 ease-in-out bg-pink-600 hover:bg-purple-800 transform hover:-translate-y-1 hover:scale-110 "
+                                className=" mt-4 mb-4 p-1 rounded transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-300 transform hover:-translate-y-1 hover:scale-110"
                                 onClick={() => rejectFriendReq(individual.id)}
                             >
                                 Unfriend
@@ -91,25 +91,23 @@ export default function Friends() {
                         </div>
                     ))}
             </div>
-            <h2>Your Wannabes</h2>
+            <h2 className="m-4 text-3xl text-gray-500">Your Wannabes</h2>
             <div className="wannabes friends flex flex-row mb-20 inline-flex ">
                 {wannabes &&
                     wannabes.map((individual) => (
-                        <div
-                            key={individual.id}
-                            className="m-2 justify-center "
-                        >
+                        <div key={individual.id} className="m-4 text-center ">
                             <Link to={`/user/${individual.id}`}>
                                 <img
-                                    className="results h-64 w-48"
+                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
                                     src={individual.image_url}
                                 ></img>
-                                <p className="flex-shrink">
+                                <hr className="border-yellow-300" />
+                                <p>
                                     {individual.first} {individual.last}
                                 </p>
                             </Link>
                             <button
-                                className="rounded-full py-3 px-6 transition duration-500 ease-in-out bg-pink-600 hover:bg-purple-800 transform hover:-translate-y-1 hover:scale-110 "
+                                className=" mt-4 mb-4 p-1 rounded transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-300 transform hover:-translate-y-1 hover:scale-110"
                                 onClick={() => acceptFriendReq(individual.id)}
                             >
                                 Accept Request

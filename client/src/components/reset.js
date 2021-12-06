@@ -82,6 +82,7 @@ export default class Reset extends React.Component {
                     <label>Reset your password here</label>
                     <br />
                     <input
+                        className="border-2 border-yellow-300 rounded"
                         key="email"
                         name="email"
                         placeholder="email"
@@ -89,7 +90,12 @@ export default class Reset extends React.Component {
                         onChange={(e) => this.handleEmail(e)}
                     />
                     <br />
-                    <button onClick={() => this.submitStart()}>Submit</button>
+                    <button
+                        className=" mt-4 mb-4 p-1 rounded transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-300 transform hover:-translate-y-1 hover:scale-110"
+                        onClick={() => this.submitStart()}
+                    >
+                        Submit
+                    </button>
                 </div>
             );
         } else if (this.state.stage === 2) {
@@ -99,6 +105,7 @@ export default class Reset extends React.Component {
                     <label>Please enter the code you received </label>
                     <br />
                     <input
+                        className="border-2 border-yellow-300 rounded"
                         key="code"
                         name="code"
                         placeholder="code"
@@ -109,31 +116,38 @@ export default class Reset extends React.Component {
                     <label>Please enter a new password </label>
                     <br />
                     <input
+                        className="border-2 border-yellow-300 rounded"
                         name="password"
                         placeholder="password"
                         type="password"
                         onChange={(e) => this.handlePassword(e)}
                     />
                     <br />
-                    <button onClick={() => this.submitConfirm()}>Submit</button>
+                    <button
+                        className=" mt-4 mb-4 p-1 rounded transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-300 transform hover:-translate-y-1 hover:scale-110"
+                        onClick={() => this.submitConfirm()}
+                    >
+                        Submit
+                    </button>
                 </div>
             );
         } else if (this.state.stage === 3) {
             return (
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alightItems: "center",
-                    }}
-                >
+                <div className="flex flex-col justify-center items-center">
                     <br />
-                    <h1>Succeeeeeessssssss!!!</h1>
+                    <h1 className="mt-12 text-4xl animate-bounce">
+                        Succeeeeeessssssss!!!
+                    </h1>
                     <img
                         style={{ width: "20rem", height: "auto" }}
                         src="/giphy.gif"
                     />
-                    <Link to="/login">Log In</Link>
+                    <Link
+                        className="mt-2 text-4xl hover:text-yellow-400"
+                        to="/login"
+                    >
+                        Log In
+                    </Link>
                 </div>
             );
         }

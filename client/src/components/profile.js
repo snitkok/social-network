@@ -9,13 +9,13 @@ export default function Profile({
     setBio,
 }) {
     return (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col items-center">
             <div className="text-center">
-                <h1>My profile</h1>
+                <h1 className=" m-4 text-4xl">My profile</h1>
                 <div id="bioImg" onClick={loggerFunc}>
-                    <ProfilePic imageUrl={imageUrl} className="h-200 w-300" />
+                    <ProfilePic imageUrl={imageUrl} />
                 </div>
-                <h3>
+                <h3 className=" m-4 text-4xl">
                     {first} {last}
                 </h3>
 

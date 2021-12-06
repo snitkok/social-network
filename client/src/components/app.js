@@ -73,25 +73,25 @@ export default class app extends Component {
         return (
             <>
                 <BrowserRouter>
-                    <header className="header flex items-center justify-between flex-wrap bg-gray-800 p-6">
+                    <header className="header flex items-center justify-between flex-wrap bg-yellow-300 p-6">
                         <img
                             id="headerlogo"
                             src="/welcome.gif"
                             alt="commonground logo"
-                            className="flex items-center flex-shrink-0 text-white mr-6 h-32 w-32 "
+                            className="flex items-center flex-shrink-0 mr-6 h-32 w-32 rounded ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
                         />
                         <Link to="/users">
-                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white">
+                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
                                 Find users
                             </p>
                         </Link>
                         <Link to="/">
-                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white">
+                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
                                 Profile
                             </p>
                         </Link>
                         <Link to="/friends">
-                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white">
+                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
                                 My friends
                             </p>
                         </Link>

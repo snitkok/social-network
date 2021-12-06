@@ -55,15 +55,19 @@ export default class Bio extends Component {
     render() {
         return (
             <>
-                <h3>This is my bio: {this.props.bio}</h3>
+                <h3 className=" m-2 text-3xl">
+                    This is my bio: {this.props.bio}
+                </h3>
                 {this.state.editorVisible && (
                     <div>
                         <textarea
+                            className="border-2 border-yellow-300 rounded"
                             onChange={(e) => this.handleChange(e)}
                             defaultValue={this.props.bio}
                         />
                         <br />
                         <button
+                            className="p-2 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-400 transform hover:-translate-y-1 hover:scale-110 "
                             onClick={() => {
                                 this.save();
                                 this.textareaToggle();
@@ -77,7 +81,7 @@ export default class Bio extends Component {
                 {!this.props.bio && !this.state.editorVisible && (
                     <button
                         onClick={this.textareaToggle}
-                        className="p-2 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-pink-600 hover:bg-purple-800 transform hover:-translate-y-1 hover:scale-110 "
+                        className="p-2 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-400 transform hover:-translate-y-1 hover:scale-110 "
                     >
                         Add bio!
                     </button>
@@ -86,7 +90,7 @@ export default class Bio extends Component {
                 {this.props.bio && !this.state.editorVisible && (
                     <button
                         onClick={this.textareaToggle}
-                        className="p-2 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-pink-600 hover:bg-purple-800 transform hover:-translate-y-1 hover:scale-110 "
+                        className="p-2 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-400 transform hover:-translate-y-1 hover:scale-110 "
                     >
                         Edit bio!
                     </button>

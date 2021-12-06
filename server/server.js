@@ -387,10 +387,11 @@ app.get("/friends-and-wannabes", async (req, res) => {
 // app.post("/friendship/accept/:id", async (req, res) => {
 //     const viewedUserId = req.params.id;
 //     const loggedInUserId = req.session.userId;
-//     await db.acceptFriend(viewedUserId, loggedInUserId);
-//     return res.json({ success: true });
+//     const data = await db.acceptFriend(viewedUserId, loggedInUserId) if(data){
+// return res.json({ success: true });
+// }
+//
 // });
-
 
 //
 
