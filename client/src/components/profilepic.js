@@ -8,6 +8,7 @@ export default function Profilepic({ first, last, imageUrl, loggerFunc }) {
                 alt={`${first} ${last}`}
                 id="image"
                 onClick={loggerFunc}
+                className="h-32 w-32"
             />
         </>
     );

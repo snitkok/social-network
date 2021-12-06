@@ -9,16 +9,18 @@ export default function Profile({
     setBio,
 }) {
     return (
-        <>
-            <h1>Hello!</h1>
-            <h3>
-                {first} {last}
-            </h3>
+        <div className="flex flex-col justify-center">
+            <div className="text-center">
+                <h1>My profile</h1>
+                <div id="bioImg" onClick={loggerFunc}>
+                    <ProfilePic imageUrl={imageUrl} className="h-200 w-300" />
+                </div>
+                <h3>
+                    {first} {last}
+                </h3>
 
-            <Bio bio={bio} setBio={setBio} />
-            <div id="bioImg" className="bioImg" onClick={loggerFunc}>
-                <ProfilePic imageUrl={imageUrl} />
+                <Bio bio={bio} setBio={setBio} />
             </div>
-        </>
+        </div>
     );
 }

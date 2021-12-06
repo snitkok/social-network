@@ -75,11 +75,21 @@ export default class Bio extends Component {
                 )}
 
                 {!this.props.bio && !this.state.editorVisible && (
-                    <button onClick={this.textareaToggle}>Add bio!</button>
+                    <button
+                        onClick={this.textareaToggle}
+                        className="p-2 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-pink-600 hover:bg-purple-800 transform hover:-translate-y-1 hover:scale-110 "
+                    >
+                        Add bio!
+                    </button>
                 )}
 
                 {this.props.bio && !this.state.editorVisible && (
-                    <button onClick={this.textareaToggle}>Edit bio!</button>
+                    <button
+                        onClick={this.textareaToggle}
+                        className="p-2 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-pink-600 hover:bg-purple-800 transform hover:-translate-y-1 hover:scale-110 "
+                    >
+                        Edit bio!
+                    </button>
                 )}
             </>
         );

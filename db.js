@@ -86,7 +86,7 @@ module.exports.updateProfile = (id, bio) => {
 
 //-------------------------------------
 module.exports.searchedUserInfo = (val) => {
-    const q = `SELECT id, first, last, image_url FROM users WHERE first ILIKE ($1)`;
+    const q = `SELECT id, first, last, image_url FROM users WHERE first ILIKE ($1) ORDER BY id DESC LIMIT 3`;
     const param = [val + "%"];
     return db.query(q, param);
 };

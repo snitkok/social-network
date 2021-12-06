@@ -1,94 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-    background-color: lightgray;
-    background-image: url(/background.png);
-    background-size: cover;
-    /* color: #d615d6; */
-    /* color:rgb(147, 20, 238); */
-    color: rgb(241, 167, 225);
+    background-color: rgb(22, 9, 19);
     font-size: 24px;
-    /* text-shadow: 2px 2px 5px #C1436D; */
-     text-shadow: 2px 2px  #d615d6;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    color: violet;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
 }
 
-input,
-label,
-button {
-    margin: 5px 0;
-}
-
-.logo {
-    width: 250px;
-    height: 250px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#welcome {
-    margin: auto;
-    width: 50%;
-    font-size: 30px;
-}
-
-input {
-    width: 200px;
-    height: 25px;
-}
-
-button {
-    width: 100px;
-    height: 25px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-}
-
-header #image {
-    width: 100px;
-    height: 100px;
-}
-
-#headerlogo {
-    width: 100px;
-    height: 100px;
-}
-
-#modal {
-    width: 35vw;
-    height: 35vh;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1010;
-    background-color: rgb(184, 181, 181);
-    font-size: 20px;
-}
-
-#modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 35vw;
-    height: 35vh;
-}
-
-#modal-overlay {
-    z-index: 1000;
+/* .modal-overlay {
+    z-index: 100;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.527);
-}
-#bioImg img{
-    width: 300px;
-    height: 300px;
+    background-color: rgba(0, 0, 0, 0.514);
+} */
+#bioImg img {
+    width: 40vw;
+    height: 50vh;
 }

@@ -7,8 +7,11 @@ import Reset from "./reset";
 export default class Welcome extends Component {
     render() {
         return (
-            <div id="welcome">
-                <img src="/welcome.gif" className="logo" />
+            <div id="welcome " className="m-4">
+                <img
+                    src="/welcome.gif "
+                    className="logo h-64 w-64 object-center"
+                />
                 <BrowserRouter>
                     <div>
                         <Route exact path="/">

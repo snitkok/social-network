@@ -72,14 +72,29 @@ export default class app extends Component {
     render() {
         return (
             <>
-                {" "}
                 <BrowserRouter>
-                    <header className="header">
+                    <header className="header flex items-center justify-between flex-wrap bg-gray-800 p-6">
                         <img
                             id="headerlogo"
                             src="/welcome.gif"
                             alt="commonground logo"
+                            className="flex items-center flex-shrink-0 text-white mr-6 h-32 w-32 "
                         />
+                        <Link to="/users">
+                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white">
+                                Find users
+                            </p>
+                        </Link>
+                        <Link to="/">
+                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white">
+                                Profile
+                            </p>
+                        </Link>
+                        <Link to="/friends">
+                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white">
+                                My friends
+                            </p>
+                        </Link>
 
                         <ProfilePic
                             first={this.state.first}
@@ -93,20 +108,10 @@ export default class app extends Component {
                                 updateProfileImg={this.updateProfileImg}
                             />
                         )}
-
-                        <Link to="/users">
-                            <p>Find users</p>
-                        </Link>
-                        <Link to="/">
-                            <p>Profile</p>
-                        </Link>
-                        <Link to="/friends">
-                            <p>My friends</p>
-                        </Link>
                     </header>
                     <hr />
 
-                    <div>
+                    <div className="flex justify-center items-center p-3">
                         <Route exact path="/">
                             <Profile
                                 first={this.state.first}

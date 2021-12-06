@@ -286,8 +286,9 @@ app.get("/friendshipstatus/:id", async (req, res) => {
 });
 //
 //---------------------------------------------------------
-app.post("/update/friendshipstatus", (req, res) => {
-    const viewedUserId = parseInt(req.body.viewedUserId);
+app.post("/update/friendshipstatus/:id", (req, res) => {
+    // const viewedUserId = parseInt(req.body.viewedUserId);
+    const viewedUserId = req.params.id;
     const buttonText = req.body.buttonText;
     const loggedInUserId = req.session.userId;
 
@@ -383,21 +384,13 @@ app.get("/friends-and-wannabes", async (req, res) => {
     }
 });
 
-app.post("/friendship/accept/:id", async (req, res) => {
-    const viewedUserId = req.params.id;
-    const loggedInUserId = req.session.userId;
-    console.log("id, loggedInUserId🌻", viewedUserId, loggedInUserId);
-    await db.acceptFriend(viewedUserId, loggedInUserId);
-    return res.json({ success: true });
-});
+// app.post("/friendship/accept/:id", async (req, res) => {
+//     const viewedUserId = req.params.id;
+//     const loggedInUserId = req.session.userId;
+//     await db.acceptFriend(viewedUserId, loggedInUserId);
+//     return res.json({ success: true });
+// });
 
-app.post("/friendship/terminate/:id", async (req, res) => {
-    const viewedUserId = req.params.id;
-    const loggedInUserId = req.session.userId;
-    console.log("id, loggedInUserId🌻", viewedUserId, loggedInUserId);
-    await db.unfriendFriend(viewedUserId, loggedInUserId);
-    return res.json({ success: true });
-});
 
 //
 

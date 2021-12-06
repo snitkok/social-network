@@ -11,8 +11,11 @@ export default function friendsReducer(friendsAndWannabes = null, action) {
     if (action.type == "friends/acceptFriend") {
         friendsAndWannabes = friendsAndWannabes.map((friend) => {
             if (friend.id == action.payload.id) {
-                friend.accepted = true;
-                return friend;
+                return {
+                    ...friend,
+                    accepted: action.type == "friends/acceptFriend",
+                };
+
             } else {
                 return friend;
             }

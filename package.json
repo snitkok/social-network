@@ -4,12 +4,12 @@
     "description": "",
     "main": "server/server.js",
     "scripts": {
-        "build": "webpack --mode production",
         "dev:client": "webpack serve --mode development",
         "dev:server": "nodemon --watch server --ignore server/uploads server/server.js",
         "dev": "concurrently \"npm:dev:*\" --kill-others",
-        "start": "node server/server.js",
-        "test": "jest"
+        "start": "craco start",
+        "build": "craco build",
+        "test": "craco test"
     },
     "engines": {
         "node": "14"
@@ -20,6 +20,7 @@
         "@babel/polyfill": "^7.4.3",
         "@babel/preset-env": "^7.12.11",
         "@babel/preset-react": "^7.12.10",
+        "@craco/craco": "^6.4.2",
         "@testing-library/react": "^11.2.2",
         "@types/react-router-dom": "^5.1.8",
         "aws-sdk": "^2.815.0",
@@ -66,5 +67,10 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "autoprefixer": "^9.8.8",
+        "postcss": "^7.0.39",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    }
 }

@@ -29,13 +29,12 @@ export default function FriendButton({ viewedUserId }) {
     }
 
     function handleFriendshipStatus() {
-        fetch("/update/friendshipstatus", {
+        fetch(`/update/friendshipstatus/${viewedUserId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                viewedUserId: viewedUserId,
                 buttonText: buttonText,
             }),
         })
@@ -45,5 +44,12 @@ export default function FriendButton({ viewedUserId }) {
             });
     }
 
-    return <button onClick={handleFriendshipStatus}>{buttonText}</button>;
+    return (
+        <button
+            onClick={handleFriendshipStatus}
+            className="m-4 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-pink-600 hover:bg-purple-800 transform hover:-translate-y-1 hover:scale-110 "
+        >
+            {buttonText}
+        </button>
+    );
 }

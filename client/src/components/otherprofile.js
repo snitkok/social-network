@@ -38,8 +38,12 @@ export default function OtherProfile() {
     return (
         <div>
             <div>
-                <img className="results" src={image_url}></img>
-                <p>
+                <img
+                    className="results m-4 border-4 border-pink-600"
+                    src={image_url}
+                    style={{ height: "15rem", width: "auto" }}
+                ></img>
+                <p className="m-4">
                     {first} {last}
                     <br /> {bio}
                 </p>
