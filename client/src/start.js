@@ -8,6 +8,7 @@ import reducer from "./redux/reducer.js";
 import { composeWithDevTools } from "redux-devtools-extension";
 //
 import "../style.css";
+import { init } from "./socket";
 
 const store = createStore(
     reducer,
@@ -27,6 +28,7 @@ fetch("/user/id.json")
         if (!data.userId) {
             ReactDOM.render(<Welcome />, document.querySelector("main"));
         } else {
+            init(store);
             ReactDOM.render(elem, document.querySelector("main"));
         }
     });

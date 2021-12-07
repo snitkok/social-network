@@ -124,7 +124,7 @@ module.exports.acceptFriend = (sender_id, recipient_id) => {
 
 module.exports.unfriendFriend = (sender_id, recipient_id) => {
     const q = ` DELETE FROM friendships
-     WHERE (recipient_id = $1 AND sender_id = $2)
+    WHERE (recipient_id = $1 AND sender_id = $2)
     OR (recipient_id = $2 AND sender_id = $1)`;
     const params = [recipient_id, sender_id];
     return db.query(q, params);
@@ -132,15 +132,45 @@ module.exports.unfriendFriend = (sender_id, recipient_id) => {
 
 //-------------------------------------------------------
 
-module.exports.getFriendsAndWannabes = (userId) => {
+module.exports.getFriendsAndWannabes = (id) => {
     const q = `
-      SELECT users.id, first, last, image_url, accepted
-      FROM friendships
-      JOIN users
-      ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)
-      OR (accepted = true AND recipient_id = $1 AND sender_id= users.id)
-      OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)
+    SELECT users.id, first, last, image_url, accepted
+    FROM friendships
+    JOIN users
+    ON (accepted = false AND recipient_id = $1 AND sender_id = users.id)
+    OR (accepted = true AND recipient_id = $1 AND sender_id= users.id)
+    OR (accepted = true AND sender_id = $1 AND recipient_id = users.id)
   `;
-    const params = [userId];
+    const params = [id];
+    return db.query(q, params);
+};
+
+//-----------------------------------------------------------------
+
+module.exports.getLastTen = () => {
+    const q = `SELECT users.id, first, last, image_url, chat_messages.id AS "userId", chat_messages.message, chat_messages.created_at
+    FROM chat_messages
+    JOIN users 
+    ON users.id = chat_messages.user_id
+    ORDER BY chat_messages.created_at DESC
+    LIMIT 10`;
+    return db.query(q);
+};
+
+module.exports.addMessage = (id, message) => {
+    const q = `INSERT INTO chat_messages (user_id, message) VALUES ($1, $2);`;
+    const params = [id, message];
+    return db.query(q, params);
+};
+
+module.exports.getLastMessage = (id) => {
+    const q = `SELECT users.id, first, last, image_url, chat_messages.message
+    FROM chat_messages
+    JOIN users 
+    ON users.id = chat_messages.user_id
+    WHERE users.id = $1
+    ORDER BY chat_messages.created_at DESC
+    LIMIT 1`;
+    const params = [id];
     return db.query(q, params);
 };

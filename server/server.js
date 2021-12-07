@@ -33,6 +33,20 @@ const uploader = multer({
         fileSize: 3097152,
     },
 });
+
+const server = require("http").Server(app);
+
+const io = require("socket.io")(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+});
+
+const cookieSessionMiddleware = cookieSession({
+    secret: `I am so secret`,
+    maxAge: 1000 * 60 * 60 * 24 * 90,
+    sameSite: true,
+});
+
 app.use(
     cookieSession({
         secret: COOKIE_SECRET,
@@ -40,6 +54,13 @@ app.use(
         sameSite: true,
     })
 );
+
+app.use(cookieSessionMiddleware);
+
+io.use((socket, next) => {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
+
 app.use(express.json());
 
 app.use(compression());
@@ -51,6 +72,7 @@ app.get("/user/id.json", function (req, res) {
         userId: req.session.userId,
     });
 });
+
 // ---------------------------------------------------------------------
 app.post("/registration.json", (req, res) => {
     console.log("req.body", req.body);
@@ -369,7 +391,6 @@ app.post("/update/friendshipstatus/:id", (req, res) => {
 //----------------------------------------------------------------------------------------------
 //Friendlist
 
-//GET /friends-and-wannabes - returns the list of friends and wannabes for the logged in user
 app.get("/friends-and-wannabes", async (req, res) => {
     try {
         const loggedInUserId = req.session.userId;
@@ -384,22 +405,49 @@ app.get("/friends-and-wannabes", async (req, res) => {
     }
 });
 
-// app.post("/friendship/accept/:id", async (req, res) => {
-//     const viewedUserId = req.params.id;
-//     const loggedInUserId = req.session.userId;
-//     const data = await db.acceptFriend(viewedUserId, loggedInUserId) if(data){
-// return res.json({ success: true });
-// }
-//
-// });
-
-//
-
 //Must stay at the end
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.listen(process.env.PORT || 3001, function () {
+server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
+});
+
+io.on("connection", (socket) => {
+    const { userId } = socket.request.session;
+    console.log("userId", userId);
+    if (!socket.request.session.userId) {
+        return socket.disconnect(true);
+    }
+
+
+
+    db.getLastTen()
+        .then((data) => {
+            console.log("getLastTen", data);
+            socket.emit("chatMessages", data);
+        })
+        .catch((err) => {
+            console.log("err getting last 10 messages: ", err);
+        });
+
+
+
+    socket.on("newChatMessage", (message) => {
+        console.log("message: ", message);
+        // add message to DB
+        db.addMessage(userId, message)
+        .then(() => {
+            db.getLastMessage(userId)
+            .then((data) => { 
+                
+                // send back to client
+                io.emit("chatMessage", data[0]);
+            });
+        });
+        // get users name and image url from DB
+       
+        io.emit("test", "MESSAGE received");
+    });
 });

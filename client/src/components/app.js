@@ -4,6 +4,7 @@ import Uploader from "./uploader";
 import Profile from "./profile";
 import FindPeople from "./findpeople";
 import Friends from "./friends";
+import Chat from "./chat";
 import OtherProfile from "./otherprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -95,6 +96,11 @@ export default class app extends Component {
                                 My friends
                             </p>
                         </Link>
+                        <Link to="/chat">
+                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
+                                Chat
+                            </p>
+                        </Link>
 
                         <ProfilePic
                             first={this.state.first}
@@ -136,6 +142,11 @@ export default class app extends Component {
                     <div>
                         <Route exact path="/friends">
                             <Friends />
+                        </Route>
+                    </div>
+                    <div>
+                        <Route exact path="/chat">
+                            <Chat />
                         </Route>
                     </div>
                 </BrowserRouter>
