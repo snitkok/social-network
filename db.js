@@ -148,7 +148,7 @@ module.exports.getFriendsAndWannabes = (id) => {
 //-----------------------------------------------------------------
 
 module.exports.getLastTen = () => {
-    const q = `SELECT users.id, first, last, image_url, chat_messages.id AS "userId", chat_messages.message, chat_messages.created_at
+    const q = `SELECT users.id, first, last, image_url, chat_messages.id AS "messageId", chat_messages.message, chat_messages.created_at
     FROM chat_messages
     JOIN users 
     ON users.id = chat_messages.user_id

@@ -1,13 +1,14 @@
-export default function friendsReducer(messages = null, action) {
+export default function messagesReducer
+(messages = null, action) {
     if (action.type == "messages/chatMessagesReceived") {
         messages = action.payload.messages;
         console.log("we are in messages/chatMessagesReceived 🍥", messages);
     }
 
     if (action.type == "messages/chatMessageReceived") {
-        const lastMessage = action.payload.messages;
+        const lastMessage = action.payload.message;
         messages = [lastMessage, ...messages];
-        console.log("messages/receiveMessages 🍄 ", messages);
+        console.log("messages/receiveMessages 🍄", messages);
     }
     return messages;
 }

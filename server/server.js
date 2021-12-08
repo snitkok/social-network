@@ -421,33 +421,29 @@ io.on("connection", (socket) => {
         return socket.disconnect(true);
     }
 
-
-
     db.getLastTen()
-        .then((data) => {
-            console.log("getLastTen", data);
-            socket.emit("chatMessages", data);
+        .then(({ rows }) => {
+            console.log("getLastTen", rows);
+            socket.emit("chatMessages", rows);
         })
         .catch((err) => {
             console.log("err getting last 10 messages: ", err);
         });
 
-
-
     socket.on("newChatMessage", (message) => {
         console.log("message: ", message);
         // add message to DB
-        db.addMessage(userId, message)
-        .then(() => {
-            db.getLastMessage(userId)
-            .then((data) => { 
-                
+        db.addMessage(userId, message).then(() => {
+            console.log("message🤡", message);
+            db.getLastMessage(userId).then((data) => {
+                console.log("data🌿", data);
                 // send back to client
-                io.emit("chatMessage", data[0]);
+                console.log("data👀", data.rows[0]);
+                io.emit("chatMessage", data.rows[0]);
             });
         });
         // get users name and image url from DB
-       
+
         io.emit("test", "MESSAGE received");
     });
 });

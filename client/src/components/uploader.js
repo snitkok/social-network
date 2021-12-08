@@ -42,33 +42,43 @@ export default class Uploader extends Component {
         }
     }
 
-    
-
     render() {
         return (
             <>
-                <div id="modal"   >
+                <div
+                    id="modal"
+                    className="rounded ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
+                >
                     <div id="modal-content">
-                        Want to change an image?
+                        <p className="text-4xl animate-pulse p-8">
+                            Want to change an image?
+                        </p>
+
                         <br />
                         <input
                             onChange={(e) => this.handleChange(e)}
                             name="file"
                             type="file"
                             accept="image/*"
+                            className="text-2xl hover:text-yellow-400"
                         />
                         <br />
                         <button
+                            className=" mt-4 mb-4 p-1 rounded transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-300 transform hover:-translate-y-1 hover:scale-110"
                             onClick={() => {
                                 this.upload();
                                 this.props.loggerFunc();
                             }}
                         >
-                            submit
+                            Submit
                         </button>
                     </div>
                 </div>
-                <div className="" id="modal-overlay" onClick={this.props.loggerFunc}></div>
+                <div
+                    className=""
+                    id="modal-overlay"
+                    onClick={this.props.loggerFunc}
+                ></div>
             </>
         );
     }

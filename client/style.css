@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background-color: #FFFFF0;
+    background-color: #fffff0;
     font-size: 24px;
     color: rgb(30, 30, 240);
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
@@ -46,6 +46,5 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.527);
 }
-
 
 
