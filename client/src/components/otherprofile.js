@@ -39,9 +39,10 @@ export default function OtherProfile() {
         <div>
             <div>
                 <img
-                    className="results m-4 border-4 border-pink-600"
+                    className=" m-4 rounded-full 
+                    ring ring-yellow-400 ring-offset-4 ring-offset-yellow-100
+                    h-64 w-64 "
                     src={image_url}
-                    style={{ height: "15rem", width: "auto" }}
                 ></img>
                 <p className="m-4">
                     {first} {last}

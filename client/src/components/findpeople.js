@@ -35,13 +35,14 @@ export default function FindPeople() {
 
     return (
         <div>
-            <div className="m-4 flex flex-col inline-flex">
-                <h1 className="text-4xl">Find users</h1>
-                <input
-                    className="mt-4 mb-4 border-2 border-yellow-300 rounded"
-                    type="text"
-                    onChange={(e) => findUsers(e.target.value)}
-                />
+            <h1 className="text-4xl m-4">Find users</h1>
+            <input
+                className="m-4 border-2 border-yellow-300 rounded"
+                type="text"
+                onChange={(e) => findUsers(e.target.value)}
+            />
+            <br/>
+            <div className="m-4 flex flex-row inline-flex">
                 {results &&
                     results.map((result) => (
                         <div

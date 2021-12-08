@@ -6,11 +6,8 @@ export default function Chat() {
     const chatMessages = useSelector((state) => state?.messages);
     console.log("chat messages", chatMessages);
     const textareaRef = useRef();
-    // const chatContainerRef = useRef();
 
     useEffect(() => {
-        // chatContainerRef.current.scrollTop =
-        //     chatContainerRef.current.scrollHeight;
     }, [chatMessages]);
 
     const keyCheck = (e) => {
@@ -25,21 +22,45 @@ export default function Chat() {
 
     return (
         <div>
-            <div>
-                <h2 className="m-4">Join the conversation</h2>
-                <div className="chatContainer m-4 h-96 w-1/3 flex flex-col-reverse overflow-y-scroll ring ring-yellow-400 ring-offset-4 ring-offset-yellow-100 rounded">
+            <h2 className="m-4">Join the conversation</h2>
+            <div className="m-4">
+                <div
+                    className=" 
+                    h-96 w-2/3 
+                    flex 
+                    flex-col-reverse 
+                    overflow-y-scroll 
+                    rounded
+                    mt-4 mb-4 ml-2 mr-2 ring ring-yellow-400 ring-offset-4 ring-offset-yellow-100"
+                >
                     {chatMessages &&
                         chatMessages.map((message) => (
-                            <div key={message.messageId}>
+                            <div
+                                className="inline-flex"
+                                key={message.messageId}
+                            >
                                 <div className="userInfo">
                                     <img
                                         className="results rounded-full h-20 w-20 mt-4 mb-4 ml-2 mr-2 ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
                                         src={message.image_url}
                                     />
-                                    <p>{message.first}</p>
                                 </div>
-                                <div className="userMessage">
-                                    <p>{message.message}</p>
+                                <hr />
+
+                                <div className="">
+                                    <p className="">{message.first}</p>
+                                    {message.loggedInUserAuthor && (
+                                        <div className="userMessage  bg-red-500">
+                                            {/* <p>{message.created_at}</p> */}
+                                            <p>{message.message}</p>
+                                        </div>
+                                    )}
+                                    {!message.loggedInUserAuthor && (
+                                        <div className="userMessage bg-blue-500">
+                                            {/* <p>{message.created_at}</p> */}
+                                            <p>{message.message}</p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ))}

@@ -158,17 +158,18 @@ module.exports.getLastTen = () => {
 };
 
 module.exports.addMessage = (id, message) => {
-    const q = `INSERT INTO chat_messages (user_id, message) VALUES ($1, $2);`;
+    const q = `INSERT INTO chat_messages (user_id, message) VALUES ($1, $2)
+    RETURNING id AS "messageId";`;
     const params = [id, message];
     return db.query(q, params);
 };
 
 module.exports.getLastMessage = (id) => {
-    const q = `SELECT users.id, first, last, image_url, chat_messages.message
+    const q = `SELECT chat_messages.id AS "messageId", users.id, first, last, image_url, chat_messages.message
     FROM chat_messages
     JOIN users 
     ON users.id = chat_messages.user_id
-    WHERE users.id = $1
+    WHERE chat_messages.id = $1
     ORDER BY chat_messages.created_at DESC
     LIMIT 1`;
     const params = [id];

@@ -53,7 +53,7 @@ export default class Uploader extends Component {
                         <p className="text-4xl animate-pulse p-8">
                             Want to change an image?
                         </p>
-
+                        <img src="/cat.png" className="" />
                         <br />
                         <input
                             onChange={(e) => this.handleChange(e)}

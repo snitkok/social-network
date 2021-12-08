@@ -405,6 +405,14 @@ app.get("/friends-and-wannabes", async (req, res) => {
     }
 });
 
+//------------------------------------------------------
+app.get("/logout", (req, res) => {
+    console.log("req.session.userId", req.session.userId);
+    req.session.userId = null;
+    console.log("req.session.userId *****************", req.session.userId);
+    res.redirect("/login");
+});
+
 //Must stay at the end
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
@@ -424,6 +432,9 @@ io.on("connection", (socket) => {
     db.getLastTen()
         .then(({ rows }) => {
             console.log("getLastTen", rows);
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].loggedInUserAuthor = rows[i].id == userId;
+            }
             socket.emit("chatMessages", rows);
         })
         .catch((err) => {
@@ -432,14 +443,33 @@ io.on("connection", (socket) => {
 
     socket.on("newChatMessage", (message) => {
         console.log("message: ", message);
-        // add message to DB
-        db.addMessage(userId, message).then(() => {
+        db.addMessage(userId, message).then(({ rows }) => {
             console.log("message🤡", message);
-            db.getLastMessage(userId).then((data) => {
+            db.getLastMessage(rows[0].messageId).then((data) => {
                 console.log("data🌿", data);
-                // send back to client
                 console.log("data👀", data.rows[0]);
-                io.emit("chatMessage", data.rows[0]);
+                socket.emit("chatMessage", {
+                    id: data.rows[0].id,
+                    first: data.rows[0].first,
+                    last: data.rows[0].last,
+                    image_url: data.rows[0].image_url,
+                    messageId: data.rows[0].messageId,
+                    message: data.rows[0].message,
+                    created_at: data.rows[0].created_at,
+                    loggedInUserAuthor: true,
+                });   
+                
+                socket.broadcast.emit("chatMessage", {
+                    id: data.rows[0].id,
+                    first: data.rows[0].first,
+                    last: data.rows[0].last,
+                    image_url: data.rows[0].image_url,
+                    messageId: data.rows[0].messageId,
+                    message: data.rows[0].message,
+                    created_at: data.rows[0].created_at,
+                    loggedInUserAuthor: false,
+                });
+
             });
         });
         // get users name and image url from DB

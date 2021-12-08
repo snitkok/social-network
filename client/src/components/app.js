@@ -5,6 +5,7 @@ import Profile from "./profile";
 import FindPeople from "./findpeople";
 import Friends from "./friends";
 import Chat from "./chat";
+import Login from "./login";
 import OtherProfile from "./otherprofile";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -70,6 +71,11 @@ export default class app extends Component {
         });
     }
 
+    logout() {
+        fetch("/logout");
+        location.replace("/login");
+    }
+
     render() {
         return (
             <>
@@ -101,6 +107,13 @@ export default class app extends Component {
                                 Chat
                             </p>
                         </Link>
+
+                        <p
+                            className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400"
+                            onClick={() => this.logout()}
+                        >
+                            Logout
+                        </p>
 
                         <ProfilePic
                             first={this.state.first}
@@ -147,6 +160,9 @@ export default class app extends Component {
                     <div>
                         <Route exact path="/chat">
                             <Chat />
+                        </Route>
+                        <Route path="/login">
+                            <Login />
                         </Route>
                     </div>
                 </BrowserRouter>
