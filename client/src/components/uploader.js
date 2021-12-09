@@ -47,10 +47,11 @@ export default class Uploader extends Component {
             <>
                 <div
                     id="modal"
-                    className="rounded ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
+                    className="rounded ring ring-black
+                    ring-offset-4 ring-offset-blue-800"
                 >
                     <div id="modal-content">
-                        <p className="text-4xl animate-pulse p-8">
+                        <p className="text-4xl  p-8">
                             Want to change an image?
                         </p>
                         <img src="/cat.png" className="" />

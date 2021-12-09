@@ -67,17 +67,18 @@ export default function Friends() {
 
     return (
         <div>
-            <h2 className="m-4 text-3xl text-yellow-400">Your friends</h2>
+            <h2 className="m-4 text-3xl text-blue-800">Your friends</h2>
             <div className="friends flex flex-row mb-20">
                 {currentFriends &&
                     currentFriends.map((individual) => (
                         <div key={individual.id} className="m-4 text-center">
                             <Link to={`/user/${individual.id}`}>
                                 <img
-                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
+                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-black
+                                    ring-offset-4 ring-offset-blue-800"
                                     src={individual.image_url}
                                 ></img>
-                                <hr className="border-yellow-300" />
+                                <hr className="border-blue-800" />
                                 <p>
                                     {individual.first} {individual.last}
                                 </p>
@@ -98,10 +99,11 @@ export default function Friends() {
                         <div key={individual.id} className="m-4 text-center ">
                             <Link to={`/user/${individual.id}`}>
                                 <img
-                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
+                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-black
+                                    ring-offset-4 ring-offset-blue-800"
                                     src={individual.image_url}
                                 ></img>
-                                <hr className="border-yellow-300" />
+                                <hr className="border-blue-800" />
                                 <p>
                                     {individual.first} {individual.last}
                                 </p>

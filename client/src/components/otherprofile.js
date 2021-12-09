@@ -40,7 +40,8 @@ export default function OtherProfile() {
             <div>
                 <img
                     className=" m-4 rounded-full 
-                    ring ring-yellow-400 ring-offset-4 ring-offset-yellow-100
+                    ring ring-black
+                    ring-offset-4 ring-offset-blue-800
                     h-64 w-64 "
                     src={image_url}
                 ></img>

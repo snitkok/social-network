@@ -55,7 +55,7 @@ export default class Registration extends React.Component {
                 <label className="mt-12">First Name</label>
 
                 <input
-                    className=" border-2 border-yellow-300 rounded"
+                    className=" border-2 border-blue-800 rounded"
                     name="first"
                     placeholder="first name"
                     onChange={(e) => this.handleChange(e)}
@@ -63,7 +63,7 @@ export default class Registration extends React.Component {
                 <br />
                 <label>Last Name</label>
                 <input
-                    className="border-2 border-yellow-300 rounded"
+                    className="border-2 border-blue-800 rounded"
                     name="last"
                     placeholder="last name"
                     onChange={(e) => this.handleChange(e)}
@@ -71,7 +71,7 @@ export default class Registration extends React.Component {
                 <br />
                 <label>Email</label>
                 <input
-                    className="border-2 border-yellow-300 rounded"
+                    className="border-2 border-blue-800 rounded"
                     name="email"
                     placeholder="email"
                     type="email"
@@ -80,7 +80,7 @@ export default class Registration extends React.Component {
                 <br />
                 <label>Password</label>
                 <input
-                    className="border-2 border-yellow-300 rounded"
+                    className="border-2 border-blue-800 rounded"
                     name="password"
                     placeholder="password"
                     type="password"

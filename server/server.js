@@ -12,6 +12,15 @@ const s3 = require("../s3.js");
 const uidSafe = require("uid-safe");
 const cryptoRandomString = require("crypto-random-string");
 const randomString = cryptoRandomString({ length: 6 });
+// const { Access_Key_Id, Access_Key_Secret } = require("../secrets");
+// const aws = require("aws-sdk");
+
+// const S3 = new aws.S3({
+//     accessKeyId: Access_Key_Id,
+//     secretAccessKey: Access_Key_Secret,
+//     Bucket: "spicedling",
+// });
+
 console.log("randomString", randomString);
 //
 const COOKIE_SECRET =
@@ -413,6 +422,21 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
 });
 
+//------------------------------------------------------------------
+app.post("/delete-account", (req, res) => {
+    const loggedInUserId = req.session.userId;
+
+    s3.deleteObject;
+    console.log("req.session.userId ", req.session.userId);
+
+    db.deleteUser(loggedInUserId).then(() => {
+        req.session.userId = null;
+        res.redirect("/registration");
+        console.log("user deleted 👺");
+        console.log("req.session.userId *****************", req.session.userId);
+    });
+});
+
 //Must stay at the end
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
@@ -457,8 +481,8 @@ io.on("connection", (socket) => {
                     message: data.rows[0].message,
                     created_at: data.rows[0].created_at,
                     loggedInUserAuthor: true,
-                });   
-                
+                });
+
                 socket.broadcast.emit("chatMessage", {
                     id: data.rows[0].id,
                     first: data.rows[0].first,
@@ -469,10 +493,8 @@ io.on("connection", (socket) => {
                     created_at: data.rows[0].created_at,
                     loggedInUserAuthor: false,
                 });
-
             });
         });
-        // get users name and image url from DB
 
         io.emit("test", "MESSAGE received");
     });

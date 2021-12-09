@@ -82,7 +82,7 @@ export default class Reset extends React.Component {
                     <label>Reset your password here</label>
                     <br />
                     <input
-                        className="border-2 border-yellow-300 rounded"
+                        className="border-2 border-blue-800 rounded"
                         key="email"
                         name="email"
                         placeholder="email"
@@ -105,7 +105,7 @@ export default class Reset extends React.Component {
                     <label>Please enter the code you received </label>
                     <br />
                     <input
-                        className="border-2 border-yellow-300 rounded"
+                        className="border-2 border-blue-800 rounded"
                         key="code"
                         name="code"
                         placeholder="code"
@@ -116,7 +116,7 @@ export default class Reset extends React.Component {
                     <label>Please enter a new password </label>
                     <br />
                     <input
-                        className="border-2 border-yellow-300 rounded"
+                        className="border-2 border-blue-800 rounded"
                         name="password"
                         placeholder="password"
                         type="password"

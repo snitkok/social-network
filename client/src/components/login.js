@@ -41,7 +41,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div className="flex flex-col items-center">
+            <div id="login" className="flex flex-col items-center">
                 <h3 className=" text-4xl animate-bounce">Login!</h3>
                 {this.state.error && (
                     <div className="error">
@@ -54,7 +54,7 @@ export default class Login extends React.Component {
                     name="email"
                     placeholder="email"
                     type="email"
-                    className="border-2 border-yellow-300 rounded"
+                    className="border-2 border-blue-800 rounded"
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br />
@@ -65,7 +65,7 @@ export default class Login extends React.Component {
                     placeholder="password"
                     type="password"
                     onChange={(e) => this.handleChange(e)}
-                    className="border-2 border-yellow-300 rounded"
+                    className="border-2 border-blue-800 rounded"
                 />
             
                 <button

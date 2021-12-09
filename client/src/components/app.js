@@ -8,7 +8,7 @@ import Chat from "./chat";
 import Login from "./login";
 import OtherProfile from "./otherprofile";
 import { BrowserRouter, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 
 export default class app extends Component {
     constructor(props) {
@@ -19,6 +19,7 @@ export default class app extends Component {
             last: "",
             imageUrl: "",
             bio: "",
+           
         };
         this.toggleUploader = this.toggleUploader.bind(this);
         this.updateProfileImg = this.updateProfileImg.bind(this);
@@ -76,57 +77,88 @@ export default class app extends Component {
         location.replace("/login");
     }
 
+    deleteAccount() {
+        fetch("/delete-account", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        location.replace("/");
+    }
+
+ 
+
     render() {
+     
         return (
             <>
                 <BrowserRouter>
-                    <header className="header flex items-center justify-between flex-wrap bg-yellow-300 p-6">
-                        <img
-                            id="headerlogo"
-                            src="/welcome.gif"
-                            alt="commonground logo"
-                            className="flex items-center flex-shrink-0 mr-6 h-32 w-32 rounded ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
-                        />
-                        <Link to="/users">
-                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
-                                Find users
-                            </p>
-                        </Link>
-                        <Link to="/">
-                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
-                                Profile
-                            </p>
-                        </Link>
-                        <Link to="/friends">
-                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
-                                My friends
-                            </p>
-                        </Link>
-                        <Link to="/chat">
-                            <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
-                                Chat
-                            </p>
-                        </Link>
-
-                        <p
-                            className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400"
-                            onClick={() => this.logout()}
-                        >
-                            Logout
-                        </p>
-
-                        <ProfilePic
-                            first={this.state.first}
-                            last={this.state.last}
-                            imageUrl={this.state.imageUrl}
-                            loggerFunc={this.toggleUploader}
-                        />
-                        {this.state.uploaderIsVisible && (
-                            <Uploader
-                                loggerFunc={this.toggleUploader}
-                                updateProfileImg={this.updateProfileImg}
+                    <header className="header flex items-center bg-black  text-blue-800 justify-between flex-wrap p-6">
+                        <div className="dropdown">
+                            <img
+                                id="headerlogo"
+                                src="/welcome.gif"
+                                alt="commonground logo"
+                                className=" mb-4 flex items-center flex-shrink-0 mr-6 h-32 w-32 rounded   ring ring-blue-800
+                    ring-offset-4 ring-offset-black"
                             />
-                        )}
+                            <p className="cursor-pointer text-3xl">Menu</p>
+                            <div className="dropdown-content rounded">
+                                <Link to="/users">
+                                    <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
+                                        Find users
+                                    </p>
+                                </Link>
+                                <Link to="/">
+                                    <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
+                                        Profile
+                                    </p>
+                                </Link>
+                                <Link to="/friends">
+                                    <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
+                                        My friends
+                                    </p>
+                                </Link>
+                                <Link to="/chat">
+                                    <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
+                                        Chat
+                                    </p>
+                                </Link>
+                                <br />
+                                <div
+                                    className="cursor-pointer block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400"
+                                    onClick={() => this.logout()}
+                                >
+                                    Logout
+                                </div>
+                                <div
+                                    className="cursor-pointer block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400"
+                                    onClick={() =>
+                                        window.confirm(
+                                            "This action cannot be indone. Delete your account❓"
+                                        ) && this.deleteAccount()
+                                    }
+                                >
+                                    Delete account
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ProfilePic
+                                first={this.state.first}
+                                last={this.state.last}
+                                imageUrl={this.state.imageUrl}
+                                loggerFunc={this.toggleUploader}
+                            />
+                            <p className="mt-4 invisible text-3xl">Menu</p>
+                            {this.state.uploaderIsVisible && (
+                                <Uploader
+                                    loggerFunc={this.toggleUploader}
+                                    updateProfileImg={this.updateProfileImg}
+                                />
+                            )}
+                        </div>
                     </header>
                     <hr />
 

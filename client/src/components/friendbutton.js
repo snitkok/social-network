@@ -47,7 +47,7 @@ export default function FriendButton({ viewedUserId }) {
     return (
         <button
             onClick={handleFriendshipStatus}
-            className="m-2 p-1 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-400 transform hover:-translate-y-1 hover:scale-110 "
+            className="m-4 p-1 rounded-full py-3 px-6 transition duration-500 ease-in-out bg-gray-400 hover:bg-yellow-400 transform hover:-translate-y-1 hover:scale-110 "
         >
             {buttonText}
         </button>

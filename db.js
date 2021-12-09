@@ -175,3 +175,40 @@ module.exports.getLastMessage = (id) => {
     const params = [id];
     return db.query(q, params);
 };
+
+
+
+//-----------------------------------------------------
+//Delete Account
+
+module.exports.deleteUser = (userId) => {
+    const q = `
+        DELETE
+        FROM users
+        WHERE id = $1;
+        `;
+    const params = [userId];
+    return db.query(q, params);
+};
+
+//--------id != to userId => user_id
+module.exports.deleteChat = (userId) => {
+    const q = `
+        DELETE
+        FROM chat_messages
+        WHERE user_id = $1;
+        `;
+    const params = [userId];
+    return db.query(q, params);
+};
+
+//--------id != to userId => recipient_id/ sender_id
+module.exports.deleteFriendships = (userId) => {
+    const q = `
+        DELETE
+        FROM friendships
+        WHERE (recipient_id = $1 OR sender_id = $1);
+        `;
+    const params = [userId];
+    return db.query(q, params);
+};

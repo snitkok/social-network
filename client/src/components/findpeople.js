@@ -37,11 +37,11 @@ export default function FindPeople() {
         <div>
             <h1 className="text-4xl m-4">Find users</h1>
             <input
-                className="m-4 border-2 border-yellow-300 rounded"
+                className="m-4 border-2 border-blue-800 rounded"
                 type="text"
                 onChange={(e) => findUsers(e.target.value)}
             />
-            <br/>
+            <br />
             <div className="m-4 flex flex-row inline-flex">
                 {results &&
                     results.map((result) => (
@@ -51,10 +51,11 @@ export default function FindPeople() {
                         >
                             <Link to={`/user/${result.id}`}>
                                 <img
-                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-gray-400 ring-offset-4 ring-offset-blue-100"
+                                    className="results rounded-full h-48 w-48 mt-4 mb-4 ml-2 mr-2 ring ring-black
+                                    ring-offset-4 ring-offset-blue-800"
                                     src={result.image_url}
                                 ></img>
-                                <hr className="border-yellow-300" />
+                                <hr className="border-blue-800" />
                                 <p className="mt-2 mb-2 text-center">
                                     {result.first} {result.last}
                                 </p>
