@@ -94,7 +94,7 @@ export default class app extends Component {
         return (
             <>
                 <BrowserRouter>
-                    <header className="header flex items-center bg-black  text-blue-800 justify-between flex-wrap p-6">
+                    <header className="header flex items-center bg-black  text-blue-800 justify-between flex-wrap p-2">
                         <div className="dropdown">
                             <img
                                 id="headerlogo"
@@ -103,7 +103,7 @@ export default class app extends Component {
                                 className=" mb-4 flex items-center flex-shrink-0 mr-6 h-32 w-32 rounded   ring ring-blue-800
                     ring-offset-4 ring-offset-black"
                             />
-                            <p className="cursor-pointer text-3xl">Menu</p>
+                            <p className="menu cursor-pointer text-4xl">Menu</p>
                             <div className="dropdown-content rounded">
                                 <Link to="/users">
                                     <p className="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400">
@@ -136,7 +136,7 @@ export default class app extends Component {
                                     className="cursor-pointer block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-gray-400"
                                     onClick={() =>
                                         window.confirm(
-                                            "This action cannot be indone. Delete your account❓"
+                                            "This action cannot be undone. Delete your account❓"
                                         ) && this.deleteAccount()
                                     }
                                 >
@@ -162,7 +162,7 @@ export default class app extends Component {
                     </header>
                     <hr />
 
-                    <div className="flex justify-center items-center p-3">
+                    <div className="profile flex justify-center items-center p-3">
                         <Route exact path="/">
                             <Profile
                                 first={this.state.first}

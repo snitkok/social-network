@@ -77,7 +77,7 @@ export default class Reset extends React.Component {
     showStage() {
         if (this.state.stage === 1) {
             return (
-                <div>
+                <div className="reset">
                     {this.state.error && <div className="error">Oops!</div>}
                     <label>Reset your password here</label>
                     <br />

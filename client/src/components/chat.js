@@ -21,7 +21,7 @@ export default function Chat() {
     };
 
     return (
-        <div>
+        <div className="chat">
             <h2 className="m-4">Join the conversation</h2>
 
             <div
@@ -38,7 +38,7 @@ export default function Chat() {
             >
                 {chatMessages &&
                     chatMessages.map((message) => (
-                        <div className="" key={message.messageId}>
+                        <div className="bg-white" key={message.messageId}>
                             {message.loggedInUserAuthor && (
                                 <div className="flex flex-col userEntry inline-flex w-full">
                                     <div className="flex flex-row-reverse justify-start">

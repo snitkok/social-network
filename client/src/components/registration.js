@@ -48,11 +48,11 @@ export default class Registration extends React.Component {
     }
     render() {
         return (
-            <div className="flex flex-col items-center">
+            <div className="register flex flex-col items-center">
                 <h3 className="text-4xl animate-bounce">Sign up!</h3>
                 {this.state.error && <div className="error">Oops!</div>}
 
-                <label className="mt-12">First Name</label>
+                <label className="mt-12 font-extrabold">First Name</label>
 
                 <input
                     className=" border-2 border-blue-800 rounded"
@@ -61,7 +61,7 @@ export default class Registration extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br />
-                <label>Last Name</label>
+                <label className="font-extrabold">Last Name</label>
                 <input
                     className="border-2 border-blue-800 rounded"
                     name="last"
@@ -69,7 +69,7 @@ export default class Registration extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br />
-                <label>Email</label>
+                <label className="font-extrabold">Email</label>
                 <input
                     className="border-2 border-blue-800 rounded"
                     name="email"
@@ -78,7 +78,7 @@ export default class Registration extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <br />
-                <label>Password</label>
+                <label className="font-extrabold">Password</label>
                 <input
                     className="border-2 border-blue-800 rounded"
                     name="password"

@@ -55,7 +55,6 @@ export default class Uploader extends Component {
                             Want to change an image?
                         </p>
                         <img src="/cat.png" className="" />
-                        <br />
                         <input
                             onChange={(e) => this.handleChange(e)}
                             name="file"

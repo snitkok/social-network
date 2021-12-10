@@ -34,7 +34,7 @@ export default function FindPeople() {
     }, [search]);
 
     return (
-        <div>
+        <div className="people">
             <h1 className="text-4xl m-4">Find users</h1>
             <input
                 className="m-4 border-2 border-blue-800 rounded"
@@ -47,7 +47,7 @@ export default function FindPeople() {
                     results.map((result) => (
                         <div
                             key={result.id}
-                            className="border-4 border-white m-4"
+                            className="m-4"
                         >
                             <Link to={`/user/${result.id}`}>
                                 <img

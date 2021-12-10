@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
     /* background-color: #32363E; */
     background-color: white;
@@ -18,14 +17,43 @@ body {
     min-width: 100vw;
 }
 
-:root{
+:root {
     margin: 0;
 }
-#login{
-      background-image: url("/login.png");
+/* .people {
+    background-image: url("/line.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: bottom;
 }
+
+.profile {
+    background-image: url("/line.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.register {
+    background-image: url("/line.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.friendsAll {
+    background-image: url("/line.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.chat {
+    background-image: url("/line.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+} */
 
 #bioImg img {
     width: 30vw;
@@ -81,4 +109,16 @@ body {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.header {
+    background-image: url("/4.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: bottom; */
+}
+
+.menu {
+    text-shadow: 2px 2px 2px blue, 0 0 1em blue, 0 0 0.3em blue;
+    color: white;
 }

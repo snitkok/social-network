@@ -66,9 +66,9 @@ export default function Friends() {
     }
 
     return (
-        <div>
+        <div className="friendsAll">
             <h2 className="m-4 text-3xl text-blue-800">Your friends</h2>
-            <div className="friends flex flex-row mb-20">
+            <div className=" flex flex-row mb-20">
                 {currentFriends &&
                     currentFriends.map((individual) => (
                         <div key={individual.id} className="m-4 text-center">
@@ -92,7 +92,7 @@ export default function Friends() {
                         </div>
                     ))}
             </div>
-            <h2 className="m-4 text-3xl text-gray-500">Your Wannabes</h2>
+            <h2 className="m-4 text-3xl text-black">Your Wannabes</h2>
             <div className="wannabes friends flex flex-row mb-20 inline-flex ">
                 {wannabes &&
                     wannabes.map((individual) => (
